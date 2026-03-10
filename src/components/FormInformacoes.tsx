@@ -1,5 +1,5 @@
 import type { ChangeEvent, Dispatch, SetStateAction } from "react"
-import { Form } from "react-bootstrap"
+import { Button, Form } from "react-bootstrap"
 import "../assets/css/FormInformacoes.css"
 import type IInformacoes from "../interfaces/IInformacoes"
 
@@ -15,6 +15,31 @@ function FormInformacoes({ informacoes, setInformacoes }: FormInformacoesProps) 
             ...informacoesAnteriores,
             [name]: value
         }))
+    }
+
+    const salvarFoto = (event: ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files
+        if(files && files.length > 0){
+            const objectUrl = URL.createObjectURL(files[0])
+            setInformacoes((informacoesAnteriores) => {
+                if(informacoesAnteriores.foto) URL.revokeObjectURL(informacoesAnteriores.foto)
+                return {
+                    ...informacoesAnteriores,
+                    foto: objectUrl
+                }
+            })
+            event.target.value = ""
+        }
+    }
+
+    const removerFoto = () => {
+        if(informacoes.foto){
+            setInformacoes((informacoesAnteriores) => ({
+                ...informacoesAnteriores,
+                foto: ""
+            }))
+            URL.revokeObjectURL(informacoes.foto);
+        }
     }
 
     return (
@@ -92,11 +117,16 @@ function FormInformacoes({ informacoes, setInformacoes }: FormInformacoesProps) 
                     onChange={changeInformacoes}
                 ></Form.Control>
             </Form.Group>
-            {/*Salvar foto*/}
             <Form.Group className="mb-2">
                 <Form.Label>Foto:</Form.Label>
-                <Form.Control type="file"></Form.Control>
+                <Form.Control type="file"
+                    accept="image/*"
+                    onChange={salvarFoto}
+                ></Form.Control>
             </Form.Group>
+            <Button className="mb-2"
+                onClick={removerFoto}
+            >Remover foto</Button>
         </Form>
     )
 }

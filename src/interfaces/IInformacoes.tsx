@@ -8,4 +8,5 @@ export default interface IInformacoes {
     email?: string;
     website?: string;
     endereco?: string;
+    foto?: string;
 }

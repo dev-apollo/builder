@@ -2,12 +2,11 @@ import { useState } from 'react'
 import { Row, Col, Container } from 'react-bootstrap';
 import '../assets/css/App.css'
 import type IInformacoes from '../interfaces/IInformacoes'
+import type ICustomizacoes from '../interfaces/ICustomizacoes';
 import BarraLateral from '../components/BarraLateral'
 import Previsualizacao from '../components/Previsualizacao';
-import type ICustomizacoes from '../interfaces/ICustomizacoes';
 
 function App() {
-  //Inicializar no modelo
   const [informacoesAssinatura, setInformacoesAssinatura] = useState<IInformacoes>({
     nome: "",
     setor: "",
@@ -17,16 +16,24 @@ function App() {
     whatsapp: "",
     email: "",
     website: "",
-    endereco: ""
+    endereco: "",
+    foto: ""
   });
   const [customizacoesAssinatura, setCustomizacoesAssinatura] = useState<ICustomizacoes>({
     corBackground: "#FFFFFF",
+    degradeSim: "false",
+    degradeCor: "#FFFFFF",
+    degradeDirecao: "to right",
     corFont: "#000000",
     fontSizeNome: 32,
     fontBoldNome: "normal",
     fontSizeSetorCargo: 24,
     fontBoldSetorCargo: "normal",
-    fontSizeDados: 16
+    fontSizeDados: 16,
+    posicaoFoto: "first",
+    formatoFoto: "quadrado",
+    rodapeSim: "false",
+    rodapeCor: "#FFFFFF"
   });
 
   return (
