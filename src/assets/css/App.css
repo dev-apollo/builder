@@ -1,3 +1,9 @@
-/*#root {
+#colunaLateral {
+    height: 98vh
+}
 
-}*/
+@media only screen and (min-width: 600px) {
+    #colunaLateral {
+        overflow-y: auto
+    }
+}

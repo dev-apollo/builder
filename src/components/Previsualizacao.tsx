@@ -15,7 +15,8 @@ function Previsualizacao({ informacoes, customizacoes }: PrevisualizacaoProps) {
             style={{
                 backgroundColor: `${customizacoes.corBackground}`,
                 backgroundImage: ((customizacoes.degradeSim === "true") ? (`linear-gradient(${customizacoes.degradeDirecao}, ${customizacoes.corBackground}, ${customizacoes.degradeCor})`) : ("none")),
-                color: `${customizacoes.corFont}`
+                color: `${customizacoes.corFont}`,
+                fontFamily: `${customizacoes.estiloFont}, Arial, sans-serif`
             }}>
             <Row>
                 {(informacoes.foto) && (

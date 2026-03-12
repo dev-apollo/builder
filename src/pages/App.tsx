@@ -24,6 +24,7 @@ function App() {
     degradeSim: "false",
     degradeCor: "#FFFFFF",
     degradeDirecao: "to right",
+    estiloFont: "Arial",
     corFont: "#000000",
     fontSizeNome: 32,
     fontBoldNome: "normal",
@@ -37,9 +38,10 @@ function App() {
   });
 
   return (
-    <Container fluid className='py-3 px-4'>
+    <Container fluid className='px-4 pt-3'>
       <Row>
-        <Col md="auto" className='mb-4'>
+        {/*Corrigir visualização para mobile, está bugada*/}
+        <Col id="colunaLateral" md="auto">
           <h1>Builder</h1>
           <BarraLateral informacoes={informacoesAssinatura}
             setInformacoes={setInformacoesAssinatura}

@@ -3,6 +3,7 @@ export default interface ICustomizacoes {
     degradeSim?: string
     degradeCor?: string
     degradeDirecao?: string
+    estiloFont?: string
     corFont?: string
     fontSizeNome?: number
     fontBoldNome?: string

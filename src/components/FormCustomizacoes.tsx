@@ -78,6 +78,20 @@ function FormCustomizacoes({ customizacoes, setCustomizacoes }: FormCustomizacoe
                 </Form.Select>
             </Form.Group>
             <Form.Group className="mb-2">
+                <Form.Label>Fonte dos textos:</Form.Label>
+                <Form.Select name="estiloFont"
+                    value={customizacoes.estiloFont}
+                    onChange={changeInformacoes}>
+                    <option value="Arial">Arial</option>
+                    <option value="Helvetica">Helvetica</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Tahoma">Tahoma</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Courier New">Courier New</option>
+                </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-2">
                 <Form.Label>Cor dos textos:</Form.Label>
                 <Form.Control type="color"
                     name="corFont"
