@@ -36,7 +36,7 @@ function Userpage() {
     const handleUpdateSenha = async (event: React.FormEvent) => {
         event.preventDefault()
         try {
-            const response = await api.put(`/user/${usuario._id}/senha`, { senha })
+            await api.put(`/user/${usuario._id}/senha`, { senha })
             alert("Senha atualizada.")
         } catch (erro) {
             console.error(erro)
@@ -48,7 +48,7 @@ function Userpage() {
         const confirmacao = window.confirm("Tem certeza que deseja deletar sua conta?");
         if (!confirmacao) return;
         try {
-            const response = await api.delete(`/user/${usuario._id}`)
+            await api.delete(`/user/${usuario._id}`)
             localStorage.clear()
             navigate("/login")
         } catch (erro) {
@@ -73,46 +73,55 @@ function Userpage() {
     return (
         <>
             <Cabecalho></Cabecalho>
-            <Container>
-                <h1>Informações de usuário</h1>
-                <Form className="mb-3" onSubmit={handleUpdateDados}>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Nome:</Form.Label>
-                        <Form.Control
-                            name="nome"
-                            type="text"
-                            placeholder="Nome Sobrenome"
-                            value={usuario.nome}
-                            onChange={changeUsuario}
-                        ></Form.Control>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Email:</Form.Label>
-                        <Form.Control
-                            name="email"
-                            type="email"
-                            placeholder="email@exemplo.com"
-                            value={usuario.email}
-                            onChange={changeUsuario}
-                        ></Form.Control>
-                    </Form.Group>
-                    <Button type="submit">Salvar alterações</Button>
-                </Form>
-                <Form className="mb-3" onSubmit={handleUpdateSenha}>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Senha:</Form.Label>
-                        <Form.Control
-                            name="senha"
-                            type="password"
-                            placeholder="••••••••"
-                            value={senha}
-                            onChange={(e) => setSenha(e.target.value)}
-                        ></Form.Control>
-                        <Form.Text>Mínimo de 8 caracteres!</Form.Text>
-                    </Form.Group>
-                    <Button type="submit">Alterar senha</Button>
-                </Form>
-                <Button variant="danger" onClick={handleDeleteConta}>Deletar conta</Button>
+            <Container className="page-shell">
+                <div className="card-surface p-4 mb-4">
+                    <h1 className="section-title">Informações de usuário</h1>
+                    <Form className="mt-3" onSubmit={handleUpdateDados}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Nome:</Form.Label>
+                            <Form.Control
+                                name="nome"
+                                type="text"
+                                placeholder="Nome Sobrenome"
+                                value={usuario.nome}
+                                onChange={changeUsuario}
+                            ></Form.Control>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Email:</Form.Label>
+                            <Form.Control
+                                name="email"
+                                type="email"
+                                placeholder="email@exemplo.com"
+                                value={usuario.email}
+                                onChange={changeUsuario}
+                            ></Form.Control>
+                        </Form.Group>
+                        <Button type="submit">Salvar alterações</Button>
+                    </Form>
+                </div>
+                <div className="card-surface p-4 mb-4">
+                    <h2 className="section-title">Segurança</h2>
+                    <Form className="mt-3" onSubmit={handleUpdateSenha}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Senha:</Form.Label>
+                            <Form.Control
+                                name="senha"
+                                type="password"
+                                placeholder="••••••••"
+                                value={senha}
+                                onChange={(e) => setSenha(e.target.value)}
+                            ></Form.Control>
+                            <Form.Text>Mínimo de 8 caracteres!</Form.Text>
+                        </Form.Group>
+                        <Button type="submit">Alterar senha</Button>
+                    </Form>
+                </div>
+                <div className="card-surface p-4">
+                    <h2 className="section-title">Conta</h2>
+                    <p className="small-muted mb-3">Esta ação é permanente e remove todos os seus dados.</p>
+                    <Button variant="danger" onClick={handleDeleteConta}>Deletar conta</Button>
+                </div>
             </Container>
         </>
     )

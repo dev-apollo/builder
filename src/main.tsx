@@ -9,27 +9,42 @@ import Homepage from './pages/Homepage.tsx'
 import Userpage from './pages/Userpage.tsx'
 import ProtecaoRotas from './components/ProtecaoRotas.tsx'
 import Cadastro from './pages/Cadastro.tsx'
+import CadastroEmpresa from './pages/CadastroEmpresa.tsx'
+import Empresa from './pages/Empresa.tsx'
+import CodigoEmpresa from './pages/CodigoEmpresa.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <Routes>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/cadastro' element={<Cadastro/>}/>
+      <Route path='/login' element={<Login />} />
+      <Route path='/cadastro' element={<Cadastro />} />
+      <Route path='/cadastro-empresa' element={<CadastroEmpresa />} />
+      <Route path='/codigo-empresa/:id' element={<CodigoEmpresa />} />
       <Route path='/' element={
-          <ProtecaoRotas>
-              <App/>
-          </ProtecaoRotas>
-        }/>
+        <ProtecaoRotas>
+          <App />
+        </ProtecaoRotas>
+      } />
+      <Route path='/assinatura/:idAssinatura' element={
+        <ProtecaoRotas>
+          <App />
+        </ProtecaoRotas>
+      } />
       <Route path='/homepage' element={
-          <ProtecaoRotas>
-              <Homepage/>
-          </ProtecaoRotas>
-        }/>
+        <ProtecaoRotas>
+          <Homepage />
+        </ProtecaoRotas>
+      } />
       <Route path='/userpage' element={
-          <ProtecaoRotas>
-              <Userpage/>
-          </ProtecaoRotas>
-        }/>
+        <ProtecaoRotas>
+          <Userpage />
+        </ProtecaoRotas>
+      } />
+      <Route path='/empresa' element={
+        <ProtecaoRotas>
+          <Empresa />
+        </ProtecaoRotas>
+      } />
     </Routes>
   </BrowserRouter>
 )

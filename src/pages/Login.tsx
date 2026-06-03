@@ -31,32 +31,37 @@ function Login(){
     }
 
     return (
-        <Container className="pt-3">
-            <h1>Builder</h1>
-            <Form onSubmit={handleLogin}>
-                <Form.Group className="mb-3">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control 
-                        name="email"
-                        type="email" 
-                        placeholder="email@exemplo.com"
-                        value={usuario.email}
-                        onChange={changeUsuario}
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Senha</Form.Label>
-                    <Form.Control 
-                        name="senha"
-                        type="password" 
-                        placeholder="••••••••"
-                        value={usuario.senha}
-                        onChange={changeUsuario}
-                    />
-                </Form.Group>
-                <Button type="submit">Login</Button>
-            </Form>
-            <Link to={"/cadastro"}>Cadastrar-se</Link>
+        <Container className="page-shell">
+            <div className="card-surface auth-card">
+                <h1>Builder</h1>
+                <p className="small-muted">Acesse sua conta para criar sua assinatura.</p>
+                <Form onSubmit={handleLogin}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control 
+                            name="email"
+                            type="email" 
+                            placeholder="email@exemplo.com"
+                            value={usuario.email}
+                            onChange={changeUsuario}
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Senha</Form.Label>
+                        <Form.Control 
+                            name="senha"
+                            type="password" 
+                            placeholder="••••••••"
+                            value={usuario.senha}
+                            onChange={changeUsuario}
+                        />
+                    </Form.Group>
+                    <Button type="submit" className="w-100">Login</Button>
+                </Form>
+                <div className="mt-3">
+                    <Link to={"/cadastro"}>Cadastrar-se</Link>
+                </div>
+            </div>
         </Container>
     )
 }

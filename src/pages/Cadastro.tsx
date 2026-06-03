@@ -1,7 +1,7 @@
 import { useState, type ChangeEvent } from "react"
 import { Button, Container, Form } from "react-bootstrap"
 import api from "../services/api"
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 function Cadastro(){
     const navigate = useNavigate()
@@ -9,6 +9,7 @@ function Cadastro(){
     const [usuario, setUsuario] = useState({
         nome: "",
         email: "",
+        codEmpresa: "",
         senha: ""
     })
     
@@ -42,9 +43,11 @@ function Cadastro(){
     }
 
     return (
-        <Container className="pt-3">
-            <h1>Cadastro</h1>
-            <Form onSubmit={handleCadastro}>
+        <Container className="page-shell">
+            <div className="card-surface auth-card">
+                <h1>Cadastro de usuário</h1>
+                <p className="small-muted">Crie sua conta para começar a personalizar assinaturas.</p>
+                <Form onSubmit={handleCadastro}>
                 <Form.Group className="mb-3">
                     <Form.Label>Nome</Form.Label>
                     <Form.Control 
@@ -53,6 +56,7 @@ function Cadastro(){
                         placeholder="Nome Sobrenome"
                         value={usuario.nome}
                         onChange={changeUsuario}
+                        required
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -63,6 +67,7 @@ function Cadastro(){
                         placeholder="email@exemplo.com"
                         value={usuario.email}
                         onChange={changeUsuario}
+                        required
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -73,6 +78,7 @@ function Cadastro(){
                         placeholder="••••••••"
                         value={usuario.senha}
                         onChange={changeUsuario}
+                        required
                     />
                     <Form.Text>Mínimo de 8 caracteres!</Form.Text>
                 </Form.Group>
@@ -84,10 +90,25 @@ function Cadastro(){
                         placeholder="••••••••"
                         value={confirmarSenha}
                         onChange={(e) => setConfirmarSenha(e.target.value)}
+                        required
                     />
                 </Form.Group>
-                <Button type="submit">Cadastrar-se</Button>
+                <Form.Group className="mb-1">
+                    <Form.Label>Código de empresa</Form.Label>
+                    <Form.Control
+                        name="codEmpresa"
+                        type="text"
+                        value={usuario.codEmpresa}
+                        onChange={changeUsuario}
+                        required
+                    />
+                </Form.Group>
+                <div className="mb-3">
+                    <Link to={"/cadastro-empresa"}>Cadastre sua empresa</Link>
+                </div>
+                <Button type="submit" className="w-100">Cadastrar-se</Button>
             </Form>
+            </div>
         </Container>
     )
 }

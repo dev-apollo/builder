@@ -1,7 +1,9 @@
 import type { ChangeEvent, Dispatch, SetStateAction } from "react"
-import { Button, Form } from "react-bootstrap"
+import { Form } from "react-bootstrap"
 import "../assets/css/FormInformacoes.css"
 import type IInformacoes from "../interfaces/IInformacoes"
+import ModalCropper from "./ModalCropper"
+import { useMask } from "@react-input/mask"
 
 interface FormInformacoesProps {
     informacoes: IInformacoes
@@ -17,33 +19,11 @@ function FormInformacoes({ informacoes, setInformacoes }: FormInformacoesProps) 
         }))
     }
 
-    const salvarFoto = (event: ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files
-        if(files && files.length > 0){
-            const objectUrl = URL.createObjectURL(files[0])
-            setInformacoes((informacoesAnteriores) => {
-                if(informacoesAnteriores.foto) URL.revokeObjectURL(informacoesAnteriores.foto)
-                return {
-                    ...informacoesAnteriores,
-                    foto: objectUrl
-                }
-            })
-            event.target.value = ""
-        }
-    }
-
-    const removerFoto = () => {
-        if(informacoes.foto){
-            setInformacoes((informacoesAnteriores) => ({
-                ...informacoesAnteriores,
-                foto: ""
-            }))
-            URL.revokeObjectURL(informacoes.foto);
-        }
-    }
+    const telefoneRef = useMask({ mask: "(__) _____-____", replacement: { _: /\d/ } })
+    const whatsappRef = useMask({ mask: "(__) _____-____", replacement: { _: /\d/ } })
 
     return (
-        <Form>
+        <Form className="form-section card-surface">
             <h3>Informações</h3>
             <Form.Group className="mb-2">
                 <Form.Label>Nome:</Form.Label>
@@ -73,6 +53,7 @@ function FormInformacoes({ informacoes, setInformacoes }: FormInformacoesProps) 
                 <Form.Label>Telefone:</Form.Label>
                 <Form.Control type="tel"
                     name="telefone"
+                    ref={telefoneRef}
                     value={informacoes.telefone}
                     onChange={changeInformacoes}
                 ></Form.Control>
@@ -89,6 +70,7 @@ function FormInformacoes({ informacoes, setInformacoes }: FormInformacoesProps) 
                 <Form.Label>Whatsapp:</Form.Label>
                 <Form.Control type="tel"
                     name="whatsapp"
+                    ref={whatsappRef}
                     value={informacoes.whatsapp}
                     onChange={changeInformacoes}
                 ></Form.Control>
@@ -119,14 +101,8 @@ function FormInformacoes({ informacoes, setInformacoes }: FormInformacoesProps) 
             </Form.Group>
             <Form.Group className="mb-2">
                 <Form.Label>Foto:</Form.Label>
-                <Form.Control type="file"
-                    accept="image/*"
-                    onChange={salvarFoto}
-                ></Form.Control>
+                <ModalCropper informacoes={informacoes} setInformacoes={setInformacoes} />
             </Form.Group>
-            <Button className="mb-2"
-                onClick={removerFoto}
-            >Remover foto</Button>
         </Form>
     )
 }

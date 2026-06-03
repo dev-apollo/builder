@@ -18,7 +18,7 @@ function FormCustomizacoes({ customizacoes, setCustomizacoes }: FormCustomizacoe
     }
 
     return (
-        <Form>
+        <Form className="form-section card-surface">
             <h3>Customizações</h3>
             <Form.Group className="mb-2">
                 <Form.Label>Posição da foto:</Form.Label>
@@ -138,24 +138,6 @@ function FormCustomizacoes({ customizacoes, setCustomizacoes }: FormCustomizacoe
                 <Form.Control type="number"
                     name="fontSizeDados"
                     value={customizacoes.fontSizeDados}
-                    onChange={changeInformacoes}
-                ></Form.Control>
-            </Form.Group>
-            <Form.Group className="mb-2">
-                <Form.Label>Rodapé na assinatura:</Form.Label>
-                <Form.Select name="rodapeSim"
-                    value={customizacoes.rodapeSim}
-                    onChange={changeInformacoes}>
-                    <option value="false">Não</option>
-                    <option value="true">Sim</option>
-                </Form.Select>
-            </Form.Group>
-            <Form.Group className="mb-2">
-                <Form.Label>Cor do rodapé:</Form.Label>
-                <Form.Control type="color"
-                    name="rodapeCor"
-                    disabled={(customizacoes.rodapeSim === "false")}
-                    value={customizacoes.rodapeCor}
                     onChange={changeInformacoes}
                 ></Form.Control>
             </Form.Group>

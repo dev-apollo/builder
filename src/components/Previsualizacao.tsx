@@ -2,14 +2,16 @@ import { Container, Row, Col, Image } from "react-bootstrap"
 import "../assets/css/Previsualizacao.css"
 import type IInformacoes from "../interfaces/IInformacoes"
 import type ICustomizacoes from "../interfaces/ICustomizacoes"
+import type {RefObject} from "react"
 
 interface PrevisualizacaoProps {
     informacoes: IInformacoes
     customizacoes: ICustomizacoes
+    previsualizacaoRef?: RefObject<HTMLDivElement | null>
 }
 
 
-function Previsualizacao({ informacoes, customizacoes }: PrevisualizacaoProps) {
+function Previsualizacao({ informacoes, customizacoes, previsualizacaoRef }: PrevisualizacaoProps) {
     return (
         <Container id="previsualizacao"
             style={{
@@ -17,18 +19,21 @@ function Previsualizacao({ informacoes, customizacoes }: PrevisualizacaoProps) {
                 backgroundImage: ((customizacoes.degradeSim === "true") ? (`linear-gradient(${customizacoes.degradeDirecao}, ${customizacoes.corBackground}, ${customizacoes.degradeCor})`) : ("none")),
                 color: `${customizacoes.corFont}`,
                 fontFamily: `${customizacoes.estiloFont}, Arial, sans-serif`
-            }}>
+            }}
+            ref={previsualizacaoRef}>
             <Row>
                 {(informacoes.foto) && (
                     <Col className="p-0" 
                         md="auto"
                         xs={{order: customizacoes.posicaoFoto}}
                         >
-                        <div id="container-foto">
+                        <div id="container-foto"
+                        style={{
+                            borderRadius: ((customizacoes.formatoFoto === "circulo") ? ("50%") : ("10px"))
+                        }}>
                             <Image id="foto" 
                                 fluid 
                                 src={informacoes.foto}
-                                //Programar formato de foto circular
                             />
                         </div>
                     </Col>
