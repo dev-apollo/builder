@@ -57,9 +57,18 @@ O backend depende do MongoDB para autenticar usuários e salvar empresas e assin
 
 Você precisa de:
 
+- uma base de dados chamada `builderdb`;
 - uma instância MongoDB ativa;
 - uma string de conexão válida no `DB_URI`;
 - acesso liberado para a máquina onde o backend vai rodar.
+
+As collections usadas pelo backend são:
+
+- `usuarios`;
+- `empresas`;
+- `assinaturas`.
+
+Em MongoDB, essas collections podem ser criadas automaticamente quando os dados forem inseridos, mas a base e a conexão precisam existir.
 
 ## 4. Executar o backend
 
