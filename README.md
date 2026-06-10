@@ -22,3 +22,6 @@
 
 🪄Backend:
 [Repositório - builder-backend](https://github.com/dev-apollo/builder-backend)
+
+📘 Guia de instalacao local:
+[GUIA-DE-INSTALACAO.md](./GUIA-DE-INSTALACAO.md)
